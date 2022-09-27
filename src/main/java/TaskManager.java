@@ -28,4 +28,20 @@ public class TaskManager {
         return epictask;
     }
 
+    public void updateTask(Task task) {
+        if (task != null) {
+            taskMap.put(task.getId(), task);
+        }
+    }
+
+    public Subtask createSubtask(Subtask subtask) {
+        if (subtask != null) {
+            id += 1;
+            subtask.setId(id);
+            subtaskMap.put(id, subtask);
+            epicMap.get(subtask.getEpicID()).addSubTask(subtask);
+        }
+        return subtask;
+    }
+
 }
