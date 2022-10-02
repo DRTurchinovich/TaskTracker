@@ -1,22 +1,21 @@
-import Tasks.EpicTask;
-import Tasks.Subtask;
-import Tasks.Task;
+import AlishevJDBCAPI.Dota2DAO;
+import AlishevJDBCAPI.models.Hero;
+
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        TaskManager manager = new TaskManager();
+        Dota2DAO dota2DAO = new Dota2DAO();
+        Hero hero = new Hero();
+        hero.setId(5);
+        hero.setName("Axe");
+        hero.setRole("Hardlane");
+        hero.setAttributes("Strength");
 
-        Task task1 = new Task("Апнуть 5к", "Играя только на 3 4 5", "NEW");
-        manager.createTask(task1);
-        System.out.println(task1);
-        System.out.println(manager.getTaskMap());
+//        List<Hero> heroList = dota2DAO.index();
+//        System.out.println(heroList);
 
+        dota2DAO.save(hero);
 
-        EpicTask epictask1 = new EpicTask("Сделать рампагу", "На чене");
-        manager.createEpicTask(epictask1);
-        Subtask subtask1 = new Subtask("Арты", "Собрать 2 рапиры", "IN_PROGRESS",
-                epictask1.getId());
-        manager.createSubtask(subtask1);
-        System.out.println(subtask1);
     }
 }
