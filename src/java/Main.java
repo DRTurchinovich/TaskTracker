@@ -7,13 +7,11 @@ public class Main {
     public static void main(String[] args) {
         Dota2DAO dota2DAO = new Dota2DAO();
         Hero hero = new Hero();
-        hero.setId(5);
-        hero.setName("Axe");
-        hero.setRole("Hardlane");
-        hero.setAttributes("Strength");
+        hero.setId(6);
+        hero.setName("Drow Ranger");
+        hero.setRole("Carry");
+        hero.setAttributes("Agility");
 
-//        List<Hero> heroList = dota2DAO.index();
-//        System.out.println(heroList);
 
         dota2DAO.save(hero);
 

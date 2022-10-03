@@ -57,14 +57,77 @@ public class Dota2DAO {
 
     public void save (Hero hero) {
         try {
-            Statement statement = connection.createStatement();
-            String SQL = "INSERT INTO heroes VALUES(" + hero.getId() + ",'" + hero.getName() + "'," + "'" + hero.getRole() + "'" + ",'" + hero.getAttributes() + "')";
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO heroes VALUES(?,?,?,?)");
 
 
-            statement.executeUpdate(SQL);
+            preparedStatement.setInt(1, hero.getId());
+            preparedStatement.setString(2, hero.getName());
+            preparedStatement.setString(3, hero.getRole());
+            preparedStatement.setString(4, hero.getAttributes());
+
+            preparedStatement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
+
+    public void update(Hero updatedHero) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement("UPDATE Hero SET name=?, role=?, attribute=? WHERE id=?");
+
+            preparedStatement.setString(1, updatedHero.getName());
+            preparedStatement.setString(2, updatedHero.getRole());
+            preparedStatement.setString(3, updatedHero.getAttributes());
+            preparedStatement.setInt(4, updatedHero.getId());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void delete(Hero deleteHero) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement("DELETE FROM Hero WHERE id=?");
+
+            preparedStatement.setInt(1, deleteHero.getId());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Hero show (Hero hero) {
+
+        Hero newhero = null;
+        try {
+            PreparedStatement preparedStatement =
+                    connection.prepareStatement("SELECT * FROM heroes WHERE id=?");
+
+            preparedStatement.setInt(1,hero.getId());
+
+           ResultSet resultSet = preparedStatement.executeQuery();
+
+           resultSet.next();
+
+           newhero = new Hero();
+
+           newhero.setId(resultSet.getInt("id"));
+           newhero.setName(resultSet.getString("name"));
+           newhero.setRole(resultSet.getString("role"));
+           newhero.setAttributes(resultSet.getString("attributes"));
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 }
