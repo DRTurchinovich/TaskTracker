@@ -1,19 +1,17 @@
-import AlishevJDBCAPI.Dota2DAO;
+import AlishevJDBCAPI.dao.Dota2DAO;
 import AlishevJDBCAPI.models.Hero;
-
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Dota2DAO dota2DAO = new Dota2DAO();
-        Hero hero = new Hero();
-        hero.setId(6);
-        hero.setName("Drow Ranger");
-        hero.setRole("Carry");
-        hero.setAttributes("Agility");
-
-
-        dota2DAO.save(hero);
+//        Dota2DAO dota2DAO = new Dota2DAO();
+//        Hero newhero = new Hero();
+////        hero.setName("Alchemist");
+////        hero.setRole("Carry");
+////        hero.setAttributes("Agility");
+//        newhero.getId();
+//
+//
+//      dota2DAO.show(newhero);
 
     }
 }
